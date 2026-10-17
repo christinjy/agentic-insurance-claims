@@ -16,6 +16,16 @@ powershell -ExecutionPolicy Bypass -File .\run_demo.ps1 `
   -MaxSteps 8
 ```
 
+批量运行回归评测并保存汇总结果：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run_regression.ps1 `
+  -LimitCases 5 `
+  -MaxSteps 8
+```
+
+结果会写入 `artifacts/quick_regression/`，包括总体汇总、每个案例的运行记录和可回放案例。
+
 训练文件位于 `artifacts/final_dataset/`。使用两份产物：
 
 | 文件                  | 作用                                |
