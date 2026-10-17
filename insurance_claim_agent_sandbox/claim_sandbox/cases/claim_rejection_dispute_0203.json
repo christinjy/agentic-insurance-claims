@@ -1,0 +1,30 @@
+{
+  "case_id": "claim_rejection_dispute_0203",
+  "family": "rejection_dispute",
+  "difficulty": "hard",
+  "initial_user_message": "我这个理赔被驳回，说既往症不赔，我不接受，你给我一个能复核的入口。",
+  "subissues": ["rejection_reason", "terms_basis", "reconsideration_path"],
+  "customer_profile": {"customer_id": "C022", "name": "周女士", "channel": "phone", "emotion": "furious", "age": 47, "gender": "女"},
+  "policy_summary": {"policy_id": "P211", "product": "重疾医疗险B2", "insured_name": "周女士", "status": "有效"},
+  "claim_case": {"claim_id": "CL2102", "status": "rejected", "status_reason": "就诊记录显示属于既往症责任除外", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-06-05", "event": "案件提交"},
+    {"date": "2026-06-10", "event": "核赔识别既往症线索"},
+    {"date": "2026-06-12", "event": "拒赔结论"}
+  ],
+  "required_documents": [],
+  "uploaded_documents": ["病历", "诊断证明"],
+  "liability_rules": {"coverage_decision": "pre_existing_excluded", "terms": ["投保前已存在疾病相关责任不予赔付", "核赔可依据既往病史判断责任除外"]},
+  "payment_breakdown": {"status": "rejected", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "不适用", "payment_after_approval": "不适用", "exact_promise_allowed": false},
+  "escalation_matrix": {"reconsideration": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "create_reconsideration_ticket",
+  "required_slots": ["claim_status", "coverage_decision"],
+  "required_actions": ["get_claim_case", "get_policy_terms", "create_reconsideration_ticket"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["fabricated_coverage"],
+  "bucket": "holdout",
+  "tags": ["rejection", "pre_existing"],
+  "user_variants": []
+}

@@ -1,0 +1,30 @@
+{
+  "case_id": "claim_rejection_dispute_0202",
+  "family": "rejection_dispute",
+  "difficulty": "medium",
+  "initial_user_message": "你们说我这个门诊手术不赔，具体是条款哪一条？如果我要重新申诉怎么弄？",
+  "subissues": ["rejection_reason", "terms_basis", "reconsideration_path"],
+  "customer_profile": {"customer_id": "C021", "name": "吴先生", "channel": "app", "emotion": "angry", "age": 35, "gender": "男"},
+  "policy_summary": {"policy_id": "P210", "product": "综合医疗险B1", "insured_name": "吴先生", "status": "有效"},
+  "claim_case": {"claim_id": "CL2101", "status": "rejected", "status_reason": "门诊手术项目不在保障责任内", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-07-18", "event": "门诊手术"},
+    {"date": "2026-07-22", "event": "案件提交"},
+    {"date": "2026-07-28", "event": "拒赔结论"}
+  ],
+  "required_documents": [],
+  "uploaded_documents": ["门诊病历", "发票"],
+  "liability_rules": {"coverage_decision": "out_of_coverage", "terms": ["仅赔付住院责任范围内的治疗费用", "门诊手术不在本计划责任范围内"]},
+  "payment_breakdown": {"status": "rejected", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "不适用", "payment_after_approval": "不适用", "exact_promise_allowed": false},
+  "escalation_matrix": {"reconsideration": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "create_reconsideration_ticket",
+  "required_slots": ["claim_status", "coverage_decision"],
+  "required_actions": ["get_claim_case", "get_policy_terms", "create_reconsideration_ticket"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["fabricated_coverage"],
+  "bucket": "train",
+  "tags": ["rejection", "out_of_coverage"],
+  "user_variants": []
+}

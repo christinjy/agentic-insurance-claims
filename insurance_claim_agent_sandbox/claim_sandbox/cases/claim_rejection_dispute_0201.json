@@ -1,0 +1,30 @@
+{
+  "case_id": "claim_rejection_dispute_0201",
+  "family": "rejection_dispute",
+  "difficulty": "medium",
+  "initial_user_message": "你们为什么拒赔？我不认可，这个情况怎么申诉复议？",
+  "subissues": ["rejection_reason", "terms_basis", "reconsideration_path"],
+  "customer_profile": {"customer_id": "C002", "name": "李先生", "channel": "app", "emotion": "angry"},
+  "policy_summary": {"policy_id": "P200", "product": "重疾医疗险B", "insured_name": "李先生"},
+  "claim_case": {"claim_id": "CL2001", "status": "rejected", "status_reason": "出险时间落在等待期内", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-07-01", "event": "保单生效"},
+    {"date": "2026-07-20", "event": "首次诊断"},
+    {"date": "2026-08-01", "event": "拒赔结论"}
+  ],
+  "required_documents": [],
+  "uploaded_documents": [],
+  "liability_rules": {"coverage_decision": "waiting_period_excluded", "terms": ["保单生效后90天为等待期", "等待期内发生的责任不予赔付"]},
+  "payment_breakdown": {"status": "rejected", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "不适用", "payment_after_approval": "不适用", "exact_promise_allowed": false},
+  "escalation_matrix": {"reconsideration": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "create_reconsideration_ticket",
+  "required_slots": ["claim_status", "coverage_decision"],
+  "required_actions": ["get_claim_case", "get_policy_terms", "create_reconsideration_ticket"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["fabricated_coverage"],
+  "bucket": "holdout",
+  "tags": ["rejection", "reconsideration"],
+  "user_variants": []
+}

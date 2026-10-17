@@ -1,0 +1,29 @@
+{
+  "case_id": "claim_pending_docs_0143",
+  "family": "pending_docs",
+  "difficulty": "easy",
+  "initial_user_message": "我已经传了病例和发票，页面还是让我补资料，到底还差哪一项？",
+  "subissues": ["why_pending", "which_docs", "timeline_scope"],
+  "customer_profile": {"customer_id": "C011", "name": "赵女士", "channel": "app", "emotion": "confused", "age": 29, "gender": "女"},
+  "policy_summary": {"policy_id": "P110", "product": "门急诊医疗险A1", "insured_name": "赵女士", "status": "有效"},
+  "claim_case": {"claim_id": "CL1101", "status": "pending_docs", "status_reason": "缺少银行卡信息和费用清单，暂未进入审核", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-08-11", "event": "案件提交"},
+    {"date": "2026-08-12", "event": "系统识别材料不完整"}
+  ],
+  "required_documents": ["门诊发票", "诊断证明", "费用清单", "银行卡信息"],
+  "uploaded_documents": ["门诊发票", "诊断证明"],
+  "liability_rules": {"coverage_decision": "covered_if_complete", "terms": ["责任范围内费用需材料完整后审核", "银行卡信息缺失时无法进入打款流程"]},
+  "payment_breakdown": {"status": "not_calculated", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "补齐材料后2-4个工作日进入审核", "payment_after_approval": "审核通过后1-3个工作日打款", "exact_promise_allowed": false},
+  "escalation_matrix": {"pending_docs": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "request_missing_documents",
+  "required_slots": ["claim_status", "missing_documents", "sla_range"],
+  "required_actions": ["get_claim_case", "get_uploaded_documents", "get_required_documents", "get_sla_rules", "send_document_request"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["unauthorized_commitment", "fabricated_status"],
+  "bucket": "train",
+  "tags": ["pending_docs", "self_serve", "bank_info_missing"],
+  "user_variants": []
+}

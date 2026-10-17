@@ -1,0 +1,29 @@
+{
+  "case_id": "claim_pending_docs_0142",
+  "family": "pending_docs",
+  "difficulty": "medium",
+  "initial_user_message": "我上周提交了住院理赔，现在一直显示待补件，到底缺什么？补完多久能到账？",
+  "subissues": ["why_pending", "which_docs", "timeline_scope"],
+  "customer_profile": {"customer_id": "C001", "name": "张女士", "channel": "app", "emotion": "anxious"},
+  "policy_summary": {"policy_id": "P100", "product": "住院医疗险A", "insured_name": "张女士"},
+  "claim_case": {"claim_id": "CL1001", "status": "pending_docs", "status_reason": "缺少关键材料，暂未进入审核", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-08-09", "event": "案件提交"},
+    {"date": "2026-08-10", "event": "系统识别缺少材料"}
+  ],
+  "required_documents": ["出院小结", "住院发票原件", "身份证正反面"],
+  "uploaded_documents": ["身份证正反面"],
+  "liability_rules": {"coverage_decision": "covered_if_complete", "terms": ["住院责任在保障范围内", "需提供完整材料后进入审核"]},
+  "payment_breakdown": {"status": "not_calculated", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "补齐材料后3-5个工作日进入审核", "payment_after_approval": "审核通过后1-3个工作日打款", "exact_promise_allowed": false},
+  "escalation_matrix": {"pending_docs": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "request_missing_documents",
+  "required_slots": ["claim_status", "missing_documents", "sla_range"],
+  "required_actions": ["get_claim_case", "get_uploaded_documents", "get_required_documents", "get_sla_rules", "send_document_request"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["unauthorized_commitment", "fabricated_status"],
+  "bucket": "train",
+  "tags": ["pending_docs", "self_serve"],
+  "user_variants": []
+}

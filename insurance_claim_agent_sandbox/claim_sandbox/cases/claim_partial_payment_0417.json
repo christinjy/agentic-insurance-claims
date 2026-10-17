@@ -1,0 +1,30 @@
+{
+  "case_id": "claim_partial_payment_0417",
+  "family": "partial_payment",
+  "difficulty": "medium",
+  "initial_user_message": "为什么只赔了一部分？我看账单不止这个数，具体扣在哪了？",
+  "subissues": ["payment_reason", "deductible_or_ratio", "next_step_if_disagree"],
+  "customer_profile": {"customer_id": "C041", "name": "高先生", "channel": "app", "emotion": "confused", "age": 31, "gender": "男"},
+  "policy_summary": {"policy_id": "P410", "product": "住院津贴险D1", "insured_name": "高先生", "status": "有效"},
+  "claim_case": {"claim_id": "CL4101", "status": "paid_partial", "status_reason": "扣除免赔额并剔除超限项目后部分赔付", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-08-01", "event": "案件提交"},
+    {"date": "2026-08-04", "event": "审核通过"},
+    {"date": "2026-08-05", "event": "部分赔付完成"}
+  ],
+  "required_documents": [],
+  "uploaded_documents": ["出院小结", "住院发票", "费用清单"],
+  "liability_rules": {"coverage_decision": "partial_covered_with_ratio", "terms": ["单次住院免赔额 300 元", "超责任限额费用不予赔付"]},
+  "payment_breakdown": {"status": "paid_partial", "eligible_amount": 4200, "deductible": 300, "reimbursable": 3900, "reason": "扣除 300 元免赔额并剔除超限部分"},
+  "sla_rules": {"review_after_docs": "不适用", "payment_after_approval": "审核通过后1-3个工作日打款", "exact_promise_allowed": false},
+  "escalation_matrix": {"partial_payment": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "explain_partial_payment",
+  "required_slots": ["claim_status", "payout_amount", "coverage_decision"],
+  "required_actions": ["get_claim_case", "get_payment_breakdown", "get_policy_terms"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["payout_without_basis", "fabricated_coverage"],
+  "bucket": "train",
+  "tags": ["partial_payment", "ratio"],
+  "user_variants": []
+}

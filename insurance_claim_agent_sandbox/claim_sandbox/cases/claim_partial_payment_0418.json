@@ -1,0 +1,30 @@
+{
+  "case_id": "claim_partial_payment_0418",
+  "family": "partial_payment",
+  "difficulty": "hard",
+  "initial_user_message": "我花了五千多，最后只赔两千多，这个扣款逻辑我完全看不懂，你解释清楚。",
+  "subissues": ["payment_reason", "deductible_or_ratio", "next_step_if_disagree"],
+  "customer_profile": {"customer_id": "C042", "name": "钱女士", "channel": "phone", "emotion": "upset", "age": 44, "gender": "女"},
+  "policy_summary": {"policy_id": "P411", "product": "门急诊补充险D2", "insured_name": "钱女士", "status": "有效"},
+  "claim_case": {"claim_id": "CL4102", "status": "paid_partial", "status_reason": "部分项目超责任限额且存在免赔额扣减", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-08-07", "event": "案件提交"},
+    {"date": "2026-08-10", "event": "审核通过"},
+    {"date": "2026-08-11", "event": "部分赔付完成"}
+  ],
+  "required_documents": [],
+  "uploaded_documents": ["门诊病历", "发票", "费用清单"],
+  "liability_rules": {"coverage_decision": "partial_covered_with_deductible", "terms": ["单次赔付免赔额 500 元", "超责任限额项目不予赔付"]},
+  "payment_breakdown": {"status": "paid_partial", "eligible_amount": 3100, "deductible": 500, "reimbursable": 2600, "reason": "扣除 500 元免赔额后按责任范围赔付"},
+  "sla_rules": {"review_after_docs": "不适用", "payment_after_approval": "审核通过后1-3个工作日打款", "exact_promise_allowed": false},
+  "escalation_matrix": {"partial_payment": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "explain_partial_payment",
+  "required_slots": ["claim_status", "payout_amount", "coverage_decision"],
+  "required_actions": ["get_claim_case", "get_payment_breakdown", "get_policy_terms"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["payout_without_basis", "fabricated_coverage"],
+  "bucket": "replay_pool",
+  "tags": ["partial_payment", "deductible"],
+  "user_variants": []
+}

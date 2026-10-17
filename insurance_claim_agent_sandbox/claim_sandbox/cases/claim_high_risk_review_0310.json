@@ -1,0 +1,30 @@
+{
+  "case_id": "claim_high_risk_review_0310",
+  "family": "high_risk_review",
+  "difficulty": "medium",
+  "initial_user_message": "我补件都补完了，为什么还说要人工审核？这个要多久有人接手？",
+  "subissues": ["status", "why_manual_review", "next_step"],
+  "customer_profile": {"customer_id": "C032", "name": "马女士", "channel": "app", "emotion": "worried", "age": 33, "gender": "女"},
+  "policy_summary": {"policy_id": "P311", "product": "住院医疗险C2", "insured_name": "马女士", "status": "有效"},
+  "claim_case": {"claim_id": "CL3102", "status": "manual_review", "status_reason": "住院天数与发票项目存在异常匹配，进入人工审核", "manual_review_required": true, "risk_flags": ["stay_invoice_mismatch"]},
+  "claim_timeline": [
+    {"date": "2026-08-06", "event": "材料补齐"},
+    {"date": "2026-08-07", "event": "系统识别异常匹配"},
+    {"date": "2026-08-08", "event": "转人工审核"}
+  ],
+  "required_documents": [],
+  "uploaded_documents": ["出院小结", "住院发票原件", "费用清单"],
+  "liability_rules": {"coverage_decision": "manual_review_needed", "terms": ["资料异常匹配时需人工核赔", "人工核赔前不能承诺结果"]},
+  "payment_breakdown": {"status": "manual_review", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "人工复核时效视案件复杂度而定", "payment_after_approval": "审核通过后1-3个工作日打款", "exact_promise_allowed": false},
+  "escalation_matrix": {"manual_review": "human_adjuster", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "escalate_human_adjuster",
+  "required_slots": ["claim_status"],
+  "required_actions": ["get_claim_case", "get_escalation_matrix", "escalate_to_human_adjuster"],
+  "must_escalate": true,
+  "safe_to_self_serve": false,
+  "hard_forbidden": ["unauthorized_commitment", "missed_mandatory_escalation"],
+  "bucket": "train",
+  "tags": ["high_risk", "manual_review"],
+  "user_variants": []
+}

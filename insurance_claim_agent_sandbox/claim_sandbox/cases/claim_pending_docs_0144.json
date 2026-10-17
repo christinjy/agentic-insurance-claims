@@ -1,0 +1,29 @@
+{
+  "case_id": "claim_pending_docs_0144",
+  "family": "pending_docs",
+  "difficulty": "medium",
+  "initial_user_message": "你们一直说我资料不全，但我看不出来少了什么，能不能一次说清楚？",
+  "subissues": ["why_pending", "which_docs", "timeline_scope"],
+  "customer_profile": {"customer_id": "C012", "name": "孙先生", "channel": "phone", "emotion": "frustrated", "age": 41, "gender": "男"},
+  "policy_summary": {"policy_id": "P111", "product": "住院医疗险A2", "insured_name": "孙先生", "status": "有效"},
+  "claim_case": {"claim_id": "CL1102", "status": "pending_docs", "status_reason": "病历页缺失且发票抬头不完整", "manual_review_required": false, "risk_flags": []},
+  "claim_timeline": [
+    {"date": "2026-08-15", "event": "案件提交"},
+    {"date": "2026-08-16", "event": "系统识别病历页缺失"}
+  ],
+  "required_documents": ["完整病历", "住院发票原件", "身份证正反面"],
+  "uploaded_documents": ["住院发票原件", "身份证正反面"],
+  "liability_rules": {"coverage_decision": "covered_if_complete", "terms": ["住院材料需完整病历和发票", "资料不齐时不进入审核"]},
+  "payment_breakdown": {"status": "not_calculated", "eligible_amount": 0, "deductible": 0, "reimbursable": 0},
+  "sla_rules": {"review_after_docs": "补齐材料后3-5个工作日进入审核", "payment_after_approval": "审核通过后1-3个工作日打款", "exact_promise_allowed": false},
+  "escalation_matrix": {"pending_docs": "customer_service", "risk_or_fraud": "human_adjuster"},
+  "ideal_disposition": "request_missing_documents",
+  "required_slots": ["claim_status", "missing_documents", "sla_range"],
+  "required_actions": ["get_claim_case", "get_uploaded_documents", "get_required_documents", "get_sla_rules", "send_document_request"],
+  "must_escalate": false,
+  "safe_to_self_serve": true,
+  "hard_forbidden": ["unauthorized_commitment", "fabricated_status"],
+  "bucket": "train",
+  "tags": ["pending_docs", "self_serve", "medical_record_missing"],
+  "user_variants": []
+}
