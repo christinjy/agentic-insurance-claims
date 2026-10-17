@@ -1,5 +1,21 @@
 数据合成链路
 
+## 快速体验
+
+在项目目录运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run_demo.ps1
+```
+
+也可以指定其他案件和步数：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run_demo.ps1 `
+  -CaseId claim_high_risk_review_0308 `
+  -MaxSteps 8
+```
+
 训练文件位于 `artifacts/final_dataset/`。使用两份产物：
 
 | 文件                  | 作用                                |
